@@ -1,9 +1,9 @@
 import React from "react";
 import './App.css';
 import Banner from './components/Banner';
-import CourseList from './components/CourseList';
 import { useJsonQuery } from "./utilities/fetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import TermPage from "./components/TermPage";
 
 const Main = () => {
   const scheduleUrl = "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php"
@@ -16,7 +16,7 @@ const Main = () => {
   return (
     <div className="main-content">
       <Banner title={data.title} />
-      <CourseList courses={data.courses} />
+      <TermPage courses={data.courses}/>
     </div>
   );
 };
