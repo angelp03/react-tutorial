@@ -1,6 +1,6 @@
 import CourseCard from "./CourseCard"
 import "./CourseList.css"
-const CourseList = ({courses, term, selected, toggleSelected}) => {
+const CourseList = ({courses, term, selected, toggleSelected, conflicts}) => {
     return (
         <div className="course-list">
             {Object.entries(courses)
@@ -8,10 +8,10 @@ const CourseList = ({courses, term, selected, toggleSelected}) => {
             .map(([id, course]) => (
                 <CourseCard 
                     key={id} 
-                    id={id}
                     course={course} 
                     selected={selected}
-                    toggleSelected={toggleSelected}/>
+                    toggleSelected={toggleSelected}
+                    conflicts={conflicts}/>
             ))}
         </div>
     );

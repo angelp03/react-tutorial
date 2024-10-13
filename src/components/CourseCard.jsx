@@ -1,9 +1,21 @@
-import "./CourseCard.css"
-const CourseCard = ({id, course, selected, toggleSelected}) => {
+import "./CourseCard.css";
+
+const CourseCard = ({ course, selected, toggleSelected, conflicts }) => {
+    const conflicting = conflicts.includes(course);
     return (
-        <div className="course-card-div"
-            onClick={()=>toggleSelected(course)}
-            style={{ backgroundColor: selected.includes(course) ? 'gray' : '' }}>
+        <div
+            className="course-card-div"
+            onClick={() => toggleSelected(course)}
+            style={{
+                backgroundColor: selected.includes(course)
+                    ? 'gray'
+                    : conflicting
+                    ? 'red'
+                    : '',
+                cursor: conflicting ? "not-allowed" : "pointer",
+                opacity: conflicting ? 0.5 : 1,
+            }}
+        >
             <div className="course-card-info">
                 <div className="course-card-header">
                     <h2>
@@ -20,7 +32,7 @@ const CourseCard = ({id, course, selected, toggleSelected}) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CourseCard
+export default CourseCard;
