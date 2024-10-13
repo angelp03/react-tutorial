@@ -2,8 +2,8 @@ import "./CourseCard.css"
 const CourseCard = ({id, course, selected, toggleSelected}) => {
     return (
         <div className="course-card-div"
-            onClick={()=>toggleSelected(id)}
-            style={{ backgroundColor: selected.includes(id) ? 'gray' : '' }}>
+            onClick={()=>toggleSelected(course)}
+            style={{ backgroundColor: selected.includes(course) ? 'gray' : '' }}>
             <div className="course-card-info">
                 <div className="course-card-header">
                     <h2>

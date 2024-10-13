@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TermSelector = ({setTerm}) => {
+const TermSelector = ({setTerm, setActivePlan}) => {
     const terms = ["Fall", "Winter", "Spring"];
     const [selected, setSelected] = useState("Fall");
     const handleSelect = (term) => {
@@ -21,6 +21,9 @@ const TermSelector = ({setTerm}) => {
                     {term}
                 </button>
             ))}
+            <button onClick={()=>setActivePlan(true)}>
+                Course Plan
+            </button>
         </div>
     );
 };
