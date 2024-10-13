@@ -8,6 +8,7 @@ const CourseList = ({courses, term, selected, toggleSelected, conflicts}) => {
             .map(([id, course]) => (
                 <CourseCard 
                     key={id} 
+                    id={id}
                     course={course} 
                     selected={selected}
                     toggleSelected={toggleSelected}

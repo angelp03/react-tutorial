@@ -1,6 +1,7 @@
 import "./CourseCard.css";
+import { Link } from "react-router-dom";
 
-const CourseCard = ({ course, selected, toggleSelected, conflicts }) => {
+const CourseCard = ({ id, course, selected, toggleSelected, conflicts }) => {
     const conflicting = conflicts.includes(course);
     return (
         <div
@@ -31,6 +32,12 @@ const CourseCard = ({ course, selected, toggleSelected, conflicts }) => {
                     </p>
                 </div>
             </div>
+            <Link 
+                to={`/edit/${id}`} 
+                onClick={(e) => e.stopPropagation()}
+                >
+                Edit
+            </Link>
         </div>
     );
 };
