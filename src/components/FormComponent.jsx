@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDbUpdate } from "../utilities/firebase";
 import './FormComponent.css';
 
 const FormComponent = ({ courses }) => {
@@ -17,6 +18,7 @@ const FormComponent = ({ courses }) => {
     });
 
     const [errors, setErrors] = useState({});
+    const [updateData, result] = useDbUpdate(`/courses/${id}`);
 
     const validateField = (name, value) => {
         let error = "";
@@ -68,12 +70,17 @@ const FormComponent = ({ courses }) => {
         navigate('/'); 
     };
 
+    const hasChanges = () => {
+        return formData.title !== course.title || formData.meets !== course.meets;
+    };
+
     const onSubmit = (event) => {
         event.preventDefault();
-        if (Object.keys(errors).every(key => !errors[key])) {
+        if (Object.keys(errors).every(key => !errors[key]) && hasChanges()) {
+            updateData(formData);
             navigate('/');
         } else {
-            console.log("Form contains errors, cannot submit");
+            console.log("Form contains errors or no changes, cannot submit");
         }
     };
 
@@ -108,6 +115,10 @@ const FormComponent = ({ courses }) => {
                         className="cancel-btn"
                     >
                         Cancel
+                    </button>
+                    <button type="submit" 
+                        className="cancel-btn">
+                        Submit
                     </button>
                 </div>
             </form>
