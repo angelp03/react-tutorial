@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDbUpdate } from "../utilities/firebase";
+import Banner from "./Banner";
 import './FormComponent.css';
 
 const FormComponent = ({ courses }) => {
@@ -85,44 +86,47 @@ const FormComponent = ({ courses }) => {
     };
 
     return (
-        <div className="form-div">
-            <h2>Editing Course: {course.term} CS {course.number}</h2>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label>Course Title:</label>
-                    <input 
-                        type="text" 
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                    />
-                    {errors.title && <p className="error">{errors.title}</p>}
-                </div>
-                <div>
-                    <label>Meeting Times:</label>
-                    <input 
-                        type="text" 
-                        name="meets"
-                        value={formData.meets}
-                        onChange={handleInputChange}
-                    />
-                    {errors.meets && <p className="error">{errors.meets}</p>}
-                </div>
-                <div>
-                    <button 
-                        type="button" 
-                        onClick={handleCancel}
-                        className="cancel-btn"
-                    >
-                        Cancel
-                    </button>
-                    <button type="submit" 
-                        className="cancel-btn">
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
+        <>
+            <Banner/>
+            <div className="form-div">
+                <h2>Editing Course: {course.term} CS {course.number}</h2>
+                <form onSubmit={onSubmit}>
+                    <div>
+                        <label>Course Title:</label>
+                        <input 
+                            type="text" 
+                            name="title"
+                            value={formData.title}
+                            onChange={handleInputChange}
+                        />
+                        {errors.title && <p className="error">{errors.title}</p>}
+                    </div>
+                    <div>
+                        <label>Meeting Times:</label>
+                        <input 
+                            type="text" 
+                            name="meets"
+                            value={formData.meets}
+                            onChange={handleInputChange}
+                        />
+                        {errors.meets && <p className="error">{errors.meets}</p>}
+                    </div>
+                    <div>
+                        <button 
+                            type="button" 
+                            onClick={handleCancel}
+                            className="cancel-btn"
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                            className="cancel-btn">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 };
 

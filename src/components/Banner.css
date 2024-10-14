@@ -1,0 +1,17 @@
+.banner-div {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5rem;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+button {
+    cursor: pointer;
+}

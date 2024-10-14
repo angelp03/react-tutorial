@@ -1,8 +1,10 @@
 import "./CourseCard.css";
 import { Link } from "react-router-dom";
+import { useAuthState } from "../utilities/firebase";
 
 const CourseCard = ({ id, course, selected, toggleSelected, conflicts }) => {
     const conflicting = conflicts.includes(course);
+    const [user] = useAuthState();
     return (
         <div
             className="course-card-div"
@@ -32,12 +34,13 @@ const CourseCard = ({ id, course, selected, toggleSelected, conflicts }) => {
                     </p>
                 </div>
             </div>
+            { user &&
             <Link 
                 to={`/edit/${id}`} 
                 onClick={(e) => e.stopPropagation()}
                 >
                 Edit
-            </Link>
+            </Link>}
         </div>
     );
 };
