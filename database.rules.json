@@ -1,7 +1,18 @@
 {
-  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
     ".read": true,
-    ".write": "auth !== null"
+    "admins": {
+      "$uid": {
+        ".read": true,
+        ".write": "auth != null && auth.uid === $uid" // Admin users can write
+      }
+    },
+    "courses": {
+      ".read": true,
+      ".write": "root.child('admins').child(auth.uid).exists()", // Only admins can write
+      "$courseId": {
+        ".validate": "newData.child('meets').isString() && newData.child('number').isString() && newData.child('term').isString() && newData.child('title').isString()" // Validate course data
+      }
+    }
   }
 }
